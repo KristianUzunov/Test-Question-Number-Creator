@@ -8,33 +8,42 @@ namespace emptyQuestionSpaceMaker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Input number of questions on the test.");
-            string numberOfQuestions = Console.ReadLine();
+          
             bool isInt = true;
             bool letPass = false;
             int numberToTestCuzImTooStupidToThinkOfAnotherWayToDoThis = 0;
-            while (letPass == false) 
+            string continueQuestion = "1";
+            while (continueQuestion != "STOP")
             {
-                isInt = true;
-                foreach (var thing in numberOfQuestions)
+                Console.WriteLine("Input number of questions on the test.");
+                string numberOfQuestions = Console.ReadLine();
+                numberToTestCuzImTooStupidToThinkOfAnotherWayToDoThis = 0;
+                letPass = false;
+                while (letPass == false)
                 {
-                    if (char.IsLetter(thing) || thing == '.')
+                    isInt = true;
+                    foreach (var thing in numberOfQuestions)
                     {
-                        isInt = false;
-                        Console.WriteLine("Please use a whole digit.");
-                        numberOfQuestions = Console.ReadLine();
-                        break;
+                        if (char.IsLetter(thing) || thing == '.' || thing == ' ')
+                        {
+                            isInt = false;
+                            Console.WriteLine("Please use a whole digit.");
+                            numberOfQuestions = Console.ReadLine();
+                            break;
+                        }
+                        if (isInt == true && numberToTestCuzImTooStupidToThinkOfAnotherWayToDoThis == numberOfQuestions.Length)
+                        {
+                            letPass = true;
+                        }
+                        numberToTestCuzImTooStupidToThinkOfAnotherWayToDoThis++;
                     }
-                    if (isInt == true && numberToTestCuzImTooStupidToThinkOfAnotherWayToDoThis == numberOfQuestions.Length)
-                    {
-                       letPass = true;
-                    }
-                    numberToTestCuzImTooStupidToThinkOfAnotherWayToDoThis++;
                 }
-            }
-            for (int i = 1; i <= int.Parse(numberOfQuestions); i++)
-            {
-                Console.WriteLine($"{i} - ");
+                for (int i = 1; i <= int.Parse(numberOfQuestions); i++)
+                {
+                    Console.WriteLine($"{i} - ");
+                }
+                Console.WriteLine("Type anything to continue or type STOP to exit the application.");
+                continueQuestion = Console.ReadLine();
             }
         }
     }
